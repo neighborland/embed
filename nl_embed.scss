@@ -1,0 +1,180 @@
+.neighborland_embed {
+  background: #fff;
+  padding: 10px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow:    0px 0px 4px rgba(0, 0, 0, 0.4);
+  box-shadow:         0px 0px 4px rgba(0, 0, 0, 0.4);
+  font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
+  min-width: 150px !important;
+
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  .clearfix:after {content:"\0020";display:block;height:0;clear:both;visibility:hidden;overflow:hidden;}
+  .clearfix {display:block;}
+
+  .widget-title-compact {
+    font-size: 14px;
+    font-weight: bold;
+    color: #7b8078;
+    padding-top: 2px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ced6ca;
+  }
+
+  .widget-title-fancy {
+    font-size: 18px;
+    font-weight: bold;
+    color: #7b8078;
+    padding-top: 2px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ced6ca;
+  }
+
+  .idea {
+    margin: 10px 0;
+    padding-bottom: 10px;
+    width: 100%;
+    clear: both;
+    border-bottom: 1px solid #ced6ca;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+
+    &:last-of-type {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    //fancy
+
+    .ideatext {
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+      width: 92%;
+      clear: both;
+      padding: 10px 4%;
+      margin: 0;
+      background: #E1E8DD;
+        color: #444;
+        font-family: Georgia,Times,serif;
+        font-size: 18px;
+        line-height: 24px;
+        a {
+          color: #444;
+        text-decoration: none;
+          &:hover {
+            color: #45a648;
+          }
+        }
+    }
+
+    .embed-pointer {
+      background: asset-data-url("stream-item-pointer.png") bottom left no-repeat;
+      margin-top: -11px;
+      margin-bottom: 6px;
+      margin-left: 9%;
+      height: 33px;
+    }
+
+    .embed-meta {
+      clear: both;
+      min-height: 36px;
+    }
+
+    .embed-sayer {
+      padding-left: 9%;
+      float: left;
+      width: 36px;
+      height: 36px;
+    }
+
+    .embed-says {
+      float: left;
+      width: 70%;
+      font-size: 12px;
+      line-height: 16px;
+      padding-left: 6px;
+      padding-top: 3px;
+      color: #7b8078;
+      a {
+        color: #7b8078;
+        text-decoration: none;
+        &:hover {
+          color: #45a648;
+        }
+      }
+    }
+
+    .embed-support {
+      color: #45a648;
+    }
+
+    //compact
+
+    .compact-wrap {
+      color: #6c6d68;
+      width: 86%;
+      float: right;
+      font-size: 12px;
+    }
+
+    .ideatext-compact {
+      margin-top: 2px;
+      clear: both;
+      a {
+        color: #6c6d68;
+        text-decoration: none;
+        &:hover {
+          color: #45a648;
+        }
+      }
+    }
+
+    .embed-sayer-compact {
+      width: 11%;
+      float: left;
+      margin-right: 2%;
+    }
+
+    .embed-meta-compact {
+      margin-top: 4px;
+      color: #7b8078;
+      font-size: 10px;
+      clear: both;
+      a {
+        color: #45a648;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .widget-footer {
+    font-size: 12px;
+    color: #7b8078;
+    a {
+      color: #45a648;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .neighborland_embed {
+    max-width: 275px !important;
+  }
+}
