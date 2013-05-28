@@ -360,4 +360,4 @@ Neighborland.nlEmbedBuilder = function (base_url) {
     };
 };
 
-var NlEmbed = Neighborland.nlEmbedBuilder("https://neighborland.com");
+var NlEmbed = Neighborland.nlEmbedBuilder("https://neighborland.com/");
