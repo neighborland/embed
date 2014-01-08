@@ -229,7 +229,7 @@ Neighborland.nlEmbedBuilder = function(base_url) {
      * - @param {hash} options Options for filtering ideas.
      *
      * Valid optional arguments:
-     * - filter: ("trending" | "popular" | "new")
+     * - filter: ("popular" | "new")
      * - style:  ("compact")
      * - rootId (string - what is the name of the div into which the embed will be placed?)
      * - limit (int - how many ideas should be rendered?)
@@ -257,7 +257,7 @@ Neighborland.nlEmbedBuilder = function(base_url) {
      * - @param {hash} options Options for filtering ideas.
      *
      * Valid optional arguments:
-     * - filter: ("trending" | "popular" | "new")
+     * - filter: ("popular" | "new")
      * - style:  ("compact")
      * - rootId (string - what is the name of the div into which the embed will be placed?)
      * - limit (int - how many ideas should be rendered?)
@@ -267,8 +267,8 @@ Neighborland.nlEmbedBuilder = function(base_url) {
      * If no rootId is specified, "nl_embed" is used.
      * If no limit is specified, 5 ideas are rendered.
      *
-     * Example: Get trending ideas from the "healthyfoods" question
-     *   NlEmbed.questionIdeas("healthyfoods", {filter: "trending"});
+     * Example: Get popular ideas from the "healthyfoods" question
+     *   NlEmbed.questionIdeas("healthyfoods", {filter: "popular"});
      **/
     questionIdeas: function(question, options) {
       var qurl, url = urlBuilder.questionUrl(question, options);
@@ -289,7 +289,7 @@ Neighborland.nlEmbedBuilder = function(base_url) {
      * - @param {hash} options Options for filtering ideas.
      *
      * Valid optional arguments:
-     * - filter: ("trending" | "popular" | "new")
+     * - filter: ("popular" | "new")
      * - style:  ("compact")
      * - rootId (string - what is the name of the div into which the embed will be placed?)
      * - limit (int - how many ideas should be rendered?)
@@ -299,8 +299,8 @@ Neighborland.nlEmbedBuilder = function(base_url) {
      * If no rootId is specified, "nl_embed" is used.
      * If no limit is specified, 5 ideas are rendered.
      *
-     * Example: Get trending ideas from the French Quarter neighborhood in New Orleans
-     *   NlEmbed.neighborhoodIdeas("nola-french-quarter", {filter: "trending"});
+     * Example: Get popular ideas from the French Quarter neighborhood in New Orleans
+     *   NlEmbed.neighborhoodIdeas("nola-french-quarter", {filter: "popular"});
      **/
     neighborhoodIdeas: function(neighborhood, options) {
       var url = urlBuilder.neighborhoodUrl(neighborhood, options);
@@ -316,7 +316,7 @@ Neighborland.nlEmbedBuilder = function(base_url) {
      * - @param {hash} options Options for filtering ideas.
      *
      * Valid optional arguments:
-     * - filter: ("trending" | "popular" | "new")
+     * - filter: ("popular" | "new")
      * - style:  ("compact")
      * - rootId (string - what is the name of the div into which the embed will be placed?)
      * - limit (int - how many ideas should be rendered?)
