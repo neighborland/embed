@@ -202,7 +202,7 @@ Neighborland.nlEmbedBuilder = function(base_url) {
   }
 
   function renderWidget(url, options) {
-    requestStylesheet(base_url + "assets/nl_embed.css?cachebuster=2");
+    requestStylesheet(base_url + "static/nl_embed.css?cachebuster=2");
     document.write("<div class='neighborland_embed' id='" + getRootId(options) + "' style='display: none'></div>");
     requestContent(url);
     var no_script = document.getElementById('no_script');
