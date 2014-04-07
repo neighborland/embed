@@ -1,3 +1,5 @@
+@import "compass";
+
 .neighborland_embed {
   background: #fff;
   padding: 10px;
@@ -78,7 +80,7 @@
     }
 
     .embed-pointer {
-      background: asset-data-url("stream-item-pointer.png") bottom left no-repeat;
+      background: inline-image("stream-item-pointer.png") bottom left no-repeat;
       margin-top: -11px;
       margin-bottom: 6px;
       margin-left: 9%;
@@ -91,7 +93,6 @@
     }
 
     .embed-sayer {
-      padding-left: 9%;
       float: left;
       width: 36px;
       height: 36px;

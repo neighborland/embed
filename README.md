@@ -14,8 +14,16 @@ To simply embed Neighborland on your site, see the instructions here:
 
 ### Development Notes
 
-Do not edit `nl_embed.css` directly. If you change `nl_embed.scss`, re-generate the .css file:
+#### Setup
+
+```sh
+gem install compass sass
+```
+
+#### Compile
+
+Do not edit `nl_embed.css` directly. If you change `sass/nl_embed.scss`, re-generate the .css file using compass:
 
 ```
-sass nl_embed.scss > nl_embed.css
+compass compile
 ```
