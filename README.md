@@ -18,6 +18,7 @@ To simply embed Neighborland on your site, see the instructions here:
 
 ```sh
 gem install compass sass
+npm install -g minify
 ```
 
 #### Compile
@@ -26,4 +27,5 @@ Do not edit `nl_embed.css` directly. If you change `sass/nl_embed.scss`, re-gene
 
 ```
 compass compile
+minify javascripts/nl_embed.js nl_embed.js
 ```
