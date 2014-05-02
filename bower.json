@@ -1,0 +1,17 @@
+{
+  "name": "nl_embed",
+  "version": "0.1.0",
+  "main": "javascripts/nl_embed.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "*.md",
+    "*.txt",
+    "config.rb"
+  ],
+  "keywords": [
+    "neighborland",
+    "embed",
+    "widget"
+  ]
+}
