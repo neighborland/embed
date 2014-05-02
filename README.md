@@ -15,7 +15,7 @@ To simply embed Neighborland on your site, see the instructions here:
 ### Installing with Bower
 
 ```sh
-bower install neighborland/embed
+bower install nl_embed
 ```
 
 ### Development Notes
