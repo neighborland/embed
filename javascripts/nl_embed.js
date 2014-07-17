@@ -1,11 +1,3 @@
-/*jslint
- white: true, indent: 2, plusplus: true, browser: true
- */
-
-/*global
- Neighborland
- */
-
 if (typeof Neighborland === "undefined") {
   var Neighborland = {};
 }
