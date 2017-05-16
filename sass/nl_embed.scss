@@ -9,8 +9,8 @@
   min-width: 150px !important;
 
   img {
-    max-width: 100% !important;
-    height: auto !important;
+    max-width: 100%;
+    height: auto;
   }
 
   .clearfix:after {content:"\0020";display:block;height:0;clear:both;visibility:hidden;overflow:hidden;}
@@ -171,6 +171,6 @@
 
 @media only screen and (max-width: 767px) {
   .neighborland_embed {
-    max-width: 275px !important;
+    max-width: 275px;
   }
 }
