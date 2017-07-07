@@ -29,9 +29,16 @@ npm install -g minify
 
 #### Compile
 
-Do not edit `nl_embed.css` directly. If you change `sass/nl_embed.scss`, re-generate the .css file using compass:
+Do not edit `nl_embed.css` or `nl_embed.js` directly.
 
-```
+If you change `sass/nl_embed.scss`, re-generate the .css file using compass:
+
+```sh
 compass compile
-minify javascripts/nl_embed.js nl_embed.js
+```
+
+If you change `javascripts/nl_embed.js`, re-generate the .js file using minify:
+
+```sh
+minify javascripts/nl_embed.js > nl_embed.js
 ```
