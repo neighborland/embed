@@ -102,62 +102,49 @@ Neighborland.embedUrlBuilder = function(base_url) {
     return value.length >= 1;
   },
 
-  buildQueryString = function(options, omitCallback) {
-    var query_string = "";
+  buildQueryString = function(options) {
+    var query = "";
     if (options) {
       if (options.limit && (options.limit > 0)) {
-        query_string += "?per_page=" + options.limit;
+        query += "?per_page=" + options.limit;
       } else {
-        query_string += "?per_page=5";
+        query += "?per_page=5";
       }
       if (isString(options.filter)) {
-        query_string += "&filter=" + encodeURIComponent(options.filter);
+        query += "&filter=" + encodeURIComponent(options.filter);
       }
     }
-
-    if (!omitCallback) {
-      if (options && options.rootId) {
-        query_string += "&callback=" + options.rootId + ".serverResponse";
-      } else {
-        query_string += "&callback=NlEmbed.serverResponse";
-      }
-    }
-    return query_string;
+    return query;
   };
 
   return {
     //idea URLs
 
-    cityUrl: function(city, options, omitCallback) {
+    cityUrl: function(city, options) {
       if (!city || !isString(city)) { return; }
-      return content_url + "cities/" + encodeURIComponent(city) + "/ideas" + buildQueryString(options, omitCallback);
+      return content_url + "cities/" + encodeURIComponent(city) + "/ideas" + buildQueryString(options);
     },
 
-    questionUrl: function(question, options, omitCallback) {
+    questionUrl: function(question, options) {
       if (!question || !isString(question)) { return; }
-      return content_url + "questions/" + encodeURIComponent(question) + "/ideas" + buildQueryString(options, omitCallback);
+      return content_url + "questions/" + encodeURIComponent(question) + "/ideas" + buildQueryString(options);
     },
 
-    neighborhoodUrl: function(neighborhood, options, omitCallback) {
+    neighborhoodUrl: function(neighborhood, options) {
       if (!neighborhood || !isString(neighborhood)) { return; }
-      return content_url + "neighborhoods/" + encodeURIComponent(neighborhood) + "/ideas" + buildQueryString(options, omitCallback);
+      return content_url + "neighborhoods/" + encodeURIComponent(neighborhood) + "/ideas" + buildQueryString(options);
     },
 
-    neighborUrl: function(neighbor, options, omitCallback) {
+    neighborUrl: function(neighbor, options) {
       if (!neighbor || !isString(neighbor)) { return; }
-      return content_url + "neighbors/" + encodeURIComponent(neighbor) + "/ideas" + buildQueryString(options, omitCallback);
+      return content_url + "neighbors/" + encodeURIComponent(neighbor) + "/ideas" + buildQueryString(options);
     },
 
-    //single-item detail URLs (for second-round API calls)
+    // single-item detail URLs (for second-round API calls)
 
-    oneQuestionUrl: function(question, options) {
+    oneQuestionUrl: function(question) {
       if (!question || !isString(question)) { return; }
-      if (options && options.rootId) {
-        return content_url + "questions/" + encodeURIComponent(question) + "?callback=" + options.rootId + ".questionResponse";
-      }
-      else {
-        return content_url + "questions/" + encodeURIComponent(question) + "?callback=NlEmbed.questionResponse";
-      }
+      return content_url + "questions/" + encodeURIComponent(question);
     }
   };
 };
@@ -207,7 +194,7 @@ Neighborland.nlEmbedBuilder = function(base_url) {
     return options.style;
   }
 
-  function getwidth(options) {
+  function getWidth(options) {
     if (!options) { return '330px'; }
     if (!options.width) { return '330px'; }
     return options.width;
@@ -238,7 +225,7 @@ Neighborland.nlEmbedBuilder = function(base_url) {
     cityIdeas: function(city, options) {
       var url = urlBuilder.cityUrl(city, options);
       this.serverResponse = function(data) {
-        this.renderIdeas(data, { style: getStyle(options), context: 'city', width: getwidth(options), rootId: getRootId(options) });
+        this.renderIdeas(data, { style: getStyle(options), context: 'city', width: getWidth(options), rootId: getRootId(options) });
       };
       renderWidget(url, options);
     },
@@ -265,11 +252,11 @@ Neighborland.nlEmbedBuilder = function(base_url) {
     questionIdeas: function(question, options) {
       var qurl, url = urlBuilder.questionUrl(question, options);
       this.serverResponse = function(data) {
-        this.renderIdeas(data, { style: getStyle(options), context: 'question', width: getwidth(options), rootId: getRootId(options) });
+        this.renderIdeas(data, { style: getStyle(options), context: 'question', width: getWidth(options), rootId: getRootId(options) });
       };
-      qurl = urlBuilder.oneQuestionUrl(question, options);
+      qurl = urlBuilder.oneQuestionUrl(question);
       this.questionResponse = function(data) {
-        this.renderQuestionTitle(data, { style: getStyle(options), context: 'question', width: getwidth(options), rootId: getRootId(options) });
+        this.renderQuestionTitle(data, { style: getStyle(options), context: 'question', width: getWidth(options), rootId: getRootId(options) });
       };
       renderWidget(url, options);
       requestContent(qurl);
@@ -297,7 +284,7 @@ Neighborland.nlEmbedBuilder = function(base_url) {
     neighborhoodIdeas: function(neighborhood, options) {
       var url = urlBuilder.neighborhoodUrl(neighborhood, options);
       this.serverResponse = function(data) {
-        this.renderIdeas(data, { style: getStyle(options), context: 'neighborhood', width: getwidth(options), rootId: getRootId(options) });
+        this.renderIdeas(data, { style: getStyle(options), context: 'neighborhood', width: getWidth(options), rootId: getRootId(options) });
       };
       renderWidget(url, options);
     },
@@ -324,7 +311,7 @@ Neighborland.nlEmbedBuilder = function(base_url) {
     neighborIdeas: function(neighbor, options) {
       var url = urlBuilder.neighborUrl(neighbor, options);
       this.serverResponse = function(data) {
-        this.renderIdeas(data, { style: getStyle(options), context: 'neighbor', width: getwidth(options), rootId: getRootId(options) });
+        this.renderIdeas(data, { style: getStyle(options), context: 'neighbor', width: getWidth(options), rootId: getRootId(options) });
       };
       renderWidget(url, options);
     },
@@ -332,7 +319,7 @@ Neighborland.nlEmbedBuilder = function(base_url) {
     renderQuestionTitle: function(data, options) {
       if (!data) { return; }
       var div = document.getElementById(options.rootId), title = "",
-              ideas = div.innerHTML;
+          ideas = div.innerHTML;
       title = Neighborland.EmbedRenderer.renderQuestionTitle(data, options);
       div.innerHTML = title + ideas;
     },
