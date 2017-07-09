@@ -168,24 +168,28 @@ Neighborland.nlEmbedBuilder = function(base_url) {
     node.appendChild(stylesheet);
   }
 
-  function requestContent(url) {
-    var script = document.createElement('script');
-    script.src = url;
-    document.getElementsByTagName('head')[0].appendChild(script);
-  }
-
   function getRootId(options) {
     if (!options) { return 'nl_embed'; }
     if (!options.rootId) { return 'nl_embed'; }
     return options.rootId;
   }
 
-  function renderWidget(url, options) {
+  function renderWidget(url, options, render) {
     requestStylesheet(base_url + "static/nl_embed.css?cachebuster=2");
     document.write("<div class='neighborland_embed' id='" + getRootId(options) + "' style='display: none'></div>");
-    requestContent(url);
-    var no_script = document.getElementById('no_script');
-    if (no_script) { no_script.style.display = 'none'; }
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.onload = function (e) {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          render(JSON.parse(xhr.responseText));
+        } else {
+          console.error(xhr.statusText);
+        }
+      }
+    }
+    xhr.send();
   }
 
   function getStyle(options) {
@@ -223,11 +227,11 @@ Neighborland.nlEmbedBuilder = function(base_url) {
      **/
 
     cityIdeas: function(city, options) {
-      var url = urlBuilder.cityUrl(city, options);
-      this.serverResponse = function(data) {
-        this.renderIdeas(data, { style: getStyle(options), context: 'city', width: getWidth(options), rootId: getRootId(options) });
-      };
-      renderWidget(url, options);
+      var url = urlBuilder.cityUrl(city, options),
+          that = this;
+      renderWidget(url, options, function (data) {
+        that.renderIdeas(data, { style: getStyle(options), context: 'city', width: getWidth(options), rootId: getRootId(options) });
+      });
     },
 
     /**
@@ -250,16 +254,27 @@ Neighborland.nlEmbedBuilder = function(base_url) {
      *   NlEmbed.questionIdeas("healthyfoods", {filter: "popular"});
      **/
     questionIdeas: function(question, options) {
-      var qurl, url = urlBuilder.questionUrl(question, options);
-      this.serverResponse = function(data) {
-        this.renderIdeas(data, { style: getStyle(options), context: 'question', width: getWidth(options), rootId: getRootId(options) });
-      };
-      qurl = urlBuilder.oneQuestionUrl(question);
-      this.questionResponse = function(data) {
-        this.renderQuestionTitle(data, { style: getStyle(options), context: 'question', width: getWidth(options), rootId: getRootId(options) });
-      };
-      renderWidget(url, options);
-      requestContent(qurl);
+      var that = this,
+          url = urlBuilder.questionUrl(question, options);
+      renderWidget(url, options, function(data) {
+        var xhr;
+        that.renderIdeas(data, { style: getStyle(options), context: 'question', width: getWidth(options), rootId: getRootId(options) });
+        xhr = new XMLHttpRequest();
+        xhr.open('GET', urlBuilder.oneQuestionUrl(question));
+        xhr.onload = function (e) {
+          if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+              that.renderQuestionTitle(
+                JSON.parse(xhr.responseText),
+                { style: getStyle(options), context: 'question', width: getWidth(options), rootId: getRootId(options) }
+              );
+            } else {
+              console.error(xhr.statusText);
+            }
+          }
+        }
+        xhr.send();
+      });
     },
 
     /**
@@ -282,11 +297,11 @@ Neighborland.nlEmbedBuilder = function(base_url) {
      *   NlEmbed.neighborhoodIdeas("nola-french-quarter", {filter: "popular"});
      **/
     neighborhoodIdeas: function(neighborhood, options) {
-      var url = urlBuilder.neighborhoodUrl(neighborhood, options);
-      this.serverResponse = function(data) {
-        this.renderIdeas(data, { style: getStyle(options), context: 'neighborhood', width: getWidth(options), rootId: getRootId(options) });
-      };
-      renderWidget(url, options);
+      var url = urlBuilder.neighborhoodUrl(neighborhood, options),
+          that = this;
+      renderWidget(url, options, function(data) {
+        that.renderIdeas(data, { style: getStyle(options), context: 'neighborhood', width: getWidth(options), rootId: getRootId(options) });
+      });
     },
 
     /**
@@ -309,11 +324,11 @@ Neighborland.nlEmbedBuilder = function(base_url) {
      *   NlEmbed.neighborIdeas("candy");
      **/
     neighborIdeas: function(neighbor, options) {
-      var url = urlBuilder.neighborUrl(neighbor, options);
-      this.serverResponse = function(data) {
-        this.renderIdeas(data, { style: getStyle(options), context: 'neighbor', width: getWidth(options), rootId: getRootId(options) });
-      };
-      renderWidget(url, options);
+      var that = this,
+          url = urlBuilder.neighborUrl(neighbor, options);
+      renderWidget(url, options, function(data) {
+        that.renderIdeas(data, { style: getStyle(options), context: 'neighbor', width: getWidth(options), rootId: getRootId(options) });
+      });
     },
 
     renderQuestionTitle: function(data, options) {
