@@ -1,0 +1,4 @@
+#!/bin/sh
+
+sass sass/nl_embed.scss | minify --css > nl_embed.css
+minify javascripts/nl_embed.js > nl_embed.js

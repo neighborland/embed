@@ -23,7 +23,7 @@ bower install nl_embed
 #### Setup
 
 ```sh
-gem install compass sass
+gem install sass
 npm install -g minify
 ```
 
@@ -31,14 +31,4 @@ npm install -g minify
 
 Do not edit `nl_embed.css` or `nl_embed.js` directly.
 
-If you change `sass/nl_embed.scss`, re-generate the .css file using compass:
-
-```sh
-compass compile
-```
-
-If you change `javascripts/nl_embed.js`, re-generate the .js file using minify:
-
-```sh
-minify javascripts/nl_embed.js > nl_embed.js
-```
+Regenerate the output files using `bin/build`.
