@@ -70,11 +70,29 @@
     }
 
     .embed-pointer {
-      background: inline-image("stream-item-pointer.png") bottom left no-repeat;
-      margin-top: -11px;
-      margin-bottom: 6px;
-      margin-left: 9%;
-      height: 33px;
+      position: relative;
+      margin-bottom: 15px;
+    }
+
+    .embed-pointer:after, .embed-pointer:before {
+    	top: 100%;
+    	left: 33px;
+    	border: solid transparent;
+    	content: " ";
+    	height: 0;
+    	width: 0;
+    	position: absolute;
+    	pointer-events: none;
+    }
+
+    .embed-pointer:after {
+    	border-width: 10px;
+    	margin-left: -10px;
+    }
+    .embed-pointer:before {
+      border-top-color: rgba(0, 0, 0, 0.1);
+    	border-width: 11px;
+    	margin-left: -11px;
     }
 
     .embed-meta {
