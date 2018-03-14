@@ -1,4 +1,4 @@
-if (typeof Neighborland === "undefined") {
+if (typeof Neighborland === 'undefined') {
   var Neighborland = {};
 }
 
@@ -19,7 +19,7 @@ Neighborland.EmbedRenderer = (function() {
       txt += "<div class='idea' id='" + idea.id + "'><div class='ideatext'><a href='" + idea.alternate_url + "'>&ldquo;" + escapeHTML(idea.i_want_text) + "&rdquo;</a></div>";
       txt += "<div class='embed-pointer'></div>";
     }
-    txt += "<div class='embed-meta clearfix'><div class='embed-sayer'><img src='" + idea.neighbor.avatar_thumb_url + "' width='36' height='36' /></div>";
+    txt += "<div class='embed-meta cf'><div class='embed-sayer'><img src='" + idea.neighbor.avatar_thumb_url + "' width='36' height='36' /></div>";
     txt += "<div class='embed-says'>says <a href='" + idea.neighbor.alternate_url + "'>" + escapeHTML(idea.neighbor.name) + "</a> in <a href='" + idea.city.alternate_url + "'>" + escapeHTML(idea.city.name) + ", " + escapeHTML(idea.city.state) + "</a><br />";
     txt += "<span class='embed-support'><strong>" + idea.support_count;
     txt += idea.support_count === 1 ? "</strong> neighbor wants it</span></div></div>" : "</strong> neighbors want it</span></div></div>";
@@ -30,7 +30,7 @@ Neighborland.EmbedRenderer = (function() {
 
   renderCompact = function(idea) {
     var txt = "";
-    txt += "<div class='idea clearfix' id='" + idea.id + "'>";
+    txt += "<div class='idea cf' id='" + idea.id + "'>";
     txt += "<div class='embed-sayer-compact'><img src='" + idea.neighbor.avatar_thumb_url + "' width='36' height='36' /></div>";
     txt += "<div class='compact-wrap'>";
     if (idea.i_want_text !== null) {
@@ -58,14 +58,14 @@ Neighborland.EmbedRenderer = (function() {
             break;
         }
       }
-      txt += "<div class='widget-footer clearfix'>Powered by <a href='https://neighborland.com'>Neighborland</a></div>";
+      txt += "<div class='widget-footer cf'>Powered by <a href='https://neighborland.com'>Neighborland</a></div>";
       return txt;
     },
 
     renderTitle: function(ideas, options) {
       var txt = "";
       if (ideas.length > 0 && options.context !== 'question') {
-        txt += "<div class='clearfix widget-title-" + options.style + "'>";
+        txt += "<div class='cf widget-title-" + options.style + "'>";
         switch (options.context) {
           case 'city':
             txt += "Ideas in " + escapeHTML(ideas[0].city.name);
@@ -81,7 +81,7 @@ Neighborland.EmbedRenderer = (function() {
 
     renderQuestionTitle: function(question, options) {
       var txt = "";
-      txt += "<div class='clearfix widget-title-" + options.style + "'>";
+      txt += "<div class='cf widget-title-" + options.style + "'>";
       txt += escapeHTML(question.question_text);
       txt += "</div>";
       return txt;
