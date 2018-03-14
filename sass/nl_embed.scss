@@ -1,5 +1,3 @@
-@import "compass";
-
 .neighborland_embed {
   background: #fff;
   padding: 10px;
@@ -70,9 +68,8 @@
       margin: 0;
       background: #e1e8dd;
         color: #444;
-        font-family: Georgia,Times,serif;
         font-size: 18px;
-        line-height: 24px;
+        line-height: 1.5;
         a {
           color: #444;
           text-decoration: none;
@@ -106,7 +103,7 @@
       float: left;
       width: 70%;
       font-size: 12px;
-      line-height: 16px;
+      line-height: 1.3;
       padding-left: 6px;
       padding-top: 3px;
       color: #7b8078;
