@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <script type="text/javascript" src="http://localhost:3000/static/nl_embed.js"></script>
+    <script>
+      var nl = Neighborland.nlEmbedBuilder("http://localhost:3000/");
+      nl.cityIdeas('sf', {style: 'compact'});
+      nl.neighborIdeas('dan', {style: 'fancy', rootId: 'nl-dan'});
+      nl.questionIdeas('702', {style: 'compact', rootId: 'nl-702'});
+    </script>
+  </head>
+  <body>
+    <div id="nl_embed"></div>
+    <div id="nl-dan"></div>
+    <div id="nl-702"></div>
+  </body>
+</html>
