@@ -70,9 +70,6 @@ Neighborland.EmbedRenderer = (function() {
           case 'city':
             txt += "Ideas in " + escapeHTML(ideas[0].city.name);
             break;
-          case 'neighborhood':
-            txt += "Ideas in " + escapeHTML(ideas[0].neighborhood.name) + ", " + escapeHTML(ideas[0].city.name);
-            break;
           case 'neighbor':
             txt += "Ideas from " + escapeHTML(ideas[0].neighbor.name);
             break;
@@ -93,7 +90,6 @@ Neighborland.EmbedRenderer = (function() {
 }());
 
 Neighborland.embedUrlBuilder = function(base_url) {
-  'use strict';
   var content_url = base_url + 'api/v1/',
 
   isString = function(value) {
@@ -130,11 +126,6 @@ Neighborland.embedUrlBuilder = function(base_url) {
       return content_url + "questions/" + encodeURIComponent(question) + "/ideas" + buildQueryString(options);
     },
 
-    neighborhoodUrl: function(neighborhood, options) {
-      if (!neighborhood || !isString(neighborhood)) { return; }
-      return content_url + "neighborhoods/" + encodeURIComponent(neighborhood) + "/ideas" + buildQueryString(options);
-    },
-
     neighborUrl: function(neighbor, options) {
       if (!neighbor || !isString(neighbor)) { return; }
       return content_url + "neighbors/" + encodeURIComponent(neighbor) + "/ideas" + buildQueryString(options);
@@ -150,8 +141,6 @@ Neighborland.embedUrlBuilder = function(base_url) {
 };
 
 Neighborland.nlEmbedBuilder = function(base_url) {
-  'use strict';
-
   var urlBuilder = Neighborland.embedUrlBuilder(base_url);
 
   function requestStylesheet(stylesheet_url) {
@@ -274,33 +263,6 @@ Neighborland.nlEmbedBuilder = function(base_url) {
           }
         }
         xhr.send();
-      });
-    },
-
-    /**
-     * NlEmbed.neighborhoodIdeas(neighborhood[, options])
-     * - @param {string} neighborhood The neighborhood containing the ideas.
-     * - @param {hash} options Options for filtering ideas.
-     *
-     * Valid optional arguments:
-     * - filter: ("popular" | "new")
-     * - style:  ("compact")
-     * - rootId (string - what is the name of the div into which the embed will be placed?)
-     * - limit (int - how many ideas should be rendered?)
-     *
-     * If no filter is specified, "new" is used.
-     * If no style is specified, the full-size embed is rendered.
-     * If no rootId is specified, "nl_embed" is used.
-     * If no limit is specified, 5 ideas are rendered.
-     *
-     * Example: Get popular ideas from the French Quarter neighborhood in New Orleans
-     *   NlEmbed.neighborhoodIdeas("nola-french-quarter", {filter: "popular"});
-     **/
-    neighborhoodIdeas: function(neighborhood, options) {
-      var url = urlBuilder.neighborhoodUrl(neighborhood, options),
-          that = this;
-      renderWidget(url, options, function(data) {
-        that.renderIdeas(data, { style: getStyle(options), context: 'neighborhood', width: getWidth(options), rootId: getRootId(options) });
       });
     },
 
