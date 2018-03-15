@@ -12,13 +12,21 @@ To simply embed Neighborland on your site, see the instructions here:
 
 [Full Neighborland API documentation](https://neighborland.com/docs)
 
-### Installing with Bower
+### Install
+
+#### NPM
 
 ```sh
-bower install nl_embed
+npm install neighborland-embed
 ```
 
-### Development Notes
+#### Yarn
+
+```sh
+yarn add neighborland-embed
+```
+
+### Development
 
 #### Setup
 
