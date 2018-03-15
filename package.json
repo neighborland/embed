@@ -1,0 +1,16 @@
+{
+  "name": "neighborland-embed",
+  "version": "0.5.0",
+  "description": "Neighborland embed",
+  "main": "nl_embed.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neighborland/embed.git"
+  },
+  "author": "Tee Parham",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/neighborland/embed/issues"
+  },
+  "homepage": "https://github.com/neighborland/embed#readme"
+}
